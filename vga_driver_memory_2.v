@@ -305,7 +305,7 @@ vga_driver the_vga(
 form of compression is needed.  I show a simple compress the image to 16 pixels or a 4 by 4, but this memory
 could handle more */
 reg [14:0] frame_buf_mem_address;
-reg [23:0] frame_buf_mem_data;
+reg [21:0] frame_buf_mem_data;
 reg frame_buf_mem_wren;
 wire [23:0]frame_buf_mem_q;
 
@@ -445,9 +445,16 @@ begin
 	end
 end
 
-reg [7:0]red;
-reg [7:0]green;
-reg [7:0]blue;
+wire LeftUpIn;
+wire LeftDownIn;
+wire RightUpIn;
+wire RightDownIn;
+
+reg [7:0] red;
+reg [7:0] green;
+reg [7:0] blue;
+
+veripong Ping(.clk(clk), .rst(rst), .LeftUpIn(LeftUpIn), .LeftDownIn(LeftDownIn), .RightUpIn(RightUpIn), .RightDownIn(RightDownIn), .height(y), .width(x));
 
 always @(*)
 begin
